@@ -1,0 +1,12 @@
+
+12월 09, 2024 11:15:44.938 NEW SESSION
+12월 09, 2024 11:15:44.938 Created TensorFlow Lite XNNPACK delegate for CPU.
+12월 09, 2024 11:22:51.647 Created TensorFlow Lite XNNPACK delegate for CPU.
+12월 09, 2024 11:24:39.208 Created TensorFlow Lite XNNPACK delegate for CPU.
+12월 09, 2024 11:58:34.808 [12912:14332:1209/115834.808:ERROR:CONSOLE(1)] "Unknown VE context: language-mismatch    at new He (devtools://devtools/bundled/devtools-frontend/front_end/ui/legacy/legacy.js:1:98934)
+12월 09, 2024 11:58:34.808     at devtools://devtools/bundled/devtools-frontend/front_end/ui/legacy/legacy.js:1:194918
+12월 09, 2024 11:58:34.808     at new ci (devtools://devtools/bundled/devtools-frontend/front_end/ui/legacy/legacy.js:1:195314)
+12월 09, 2024 11:58:34.808     at ci.instance (devtools://devtools/bundled/devtools-frontend/front_end/ui/legacy/legacy.js:1:195436)
+12월 09, 2024 11:58:34.808     at O.presentUI (devtools://devtools/bundled/devtools-frontend/front_end/panels/emulation/emulation.js:1:58454)
+12월 09, 2024 11:58:34.809     at #I (devtools://devtools/bundled/devtools-frontend/front_end/entrypoints/main/main.js:1:17402)
+12월 09, 2024 11:58:34.809     at #v (devtools://devtools/bundled/devtools-frontend/front_end/entrypoints/main/main.js:1:17197)", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
