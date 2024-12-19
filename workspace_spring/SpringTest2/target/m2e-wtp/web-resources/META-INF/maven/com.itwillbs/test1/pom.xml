@@ -19,6 +19,15 @@
 	<!-- Maven에서 관리하는 의존성 패키지(라이브러리)를 관리하는 위치 -->
 	<!-- 각 라이브러리는 <dependencies> 태그 내에 각각의 <dependency> 태그로 관리  -->
 	<dependencies>
+	
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.24</version>
+		    <scope>provided</scope>
+		</dependency>
+	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
