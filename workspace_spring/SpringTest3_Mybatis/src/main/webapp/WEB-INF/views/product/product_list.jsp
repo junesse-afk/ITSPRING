@@ -9,19 +9,16 @@
 </head>
 <body>
 	<div align="center">
-		<h1>학생 목록 조회</h1>
+		<h1>상품 목록</h1>
 		<table>
 			<tr>
-				<th>번호</th>
-				<th>이름</th>
+				<th>상품번호</th>
+				<th>상품명</th>
+				<th>가격</th>
+				<th>수량</th>
+				<th></th> <%-- 아래쪽 td에 "상세 정보" 버튼 --%>
 			</tr>
 			<%-- foreach --%>
-			<c:forEach var="student" items="${studentList }">
-				<tr>
-					<td>${student.idx }</td>
-					<td>${student.name }</td>
-				</tr>
-			</c:forEach>
 		</table>
 	</div>
 

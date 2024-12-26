@@ -1,0 +1,19 @@
+패키지명이 바뀌면 -> 앱서블릿에서 베이스패키지 변경(패키지명과 동일)해줘야 함
+
+가상주소 맞추고 맵핑방식을 바꾸는 형태 -> Restful
+
+메이븐프로젝트 알트 에프5
+
+pom.xml에 추가할 것들
+
+MySQL Connector
+
+Spring JDBC
+
+HikariCp
+
+MyBatis
+
+MyBatis spring
+
+컨트롤쉬프트알 -> 파일명을 검색
