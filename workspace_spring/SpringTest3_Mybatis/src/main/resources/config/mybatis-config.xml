@@ -9,6 +9,7 @@
 	 -->
 	<typeAliases>
 		<typeAlias type="com.itwillbs.test3_mybatis.vo.StudentVO" alias="student"/>
+		<typeAlias type="com.itwillbs.test3_mybatis.vo.ProductVO" alias="product"/>
 	</typeAliases>
 
 </configuration>
