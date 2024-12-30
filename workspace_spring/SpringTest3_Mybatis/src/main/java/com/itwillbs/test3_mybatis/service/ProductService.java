@@ -1,6 +1,7 @@
 package com.itwillbs.test3_mybatis.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,28 +19,30 @@ public class ProductService {
 	@Autowired
 	ProductMapper mapper;
 	
+	public <T> List<T> getProductList(Map<String, String> param) {
+		return mapper.getProductList(param);
+	}
 	public int registProduct(ProductVO product) {
 		return mapper.registProduct(product);
 	}
-	
-	public List<ProductVO> getProductList() {
-		return mapper.getProductList();
+	public int updateProduct(ProductVO product) {
+		return mapper.updateProduct(product);
 	}
-	public ProductVO getProductList(String product_id) {
-		return mapper.getProductList(product_id);
-	}
-	
-	
-	public ProductVO getProduct(String product_id) {
-		return mapper.getProduct(product_id);
-	}
-	
 	public int deleteProduct(String product_id) {
 		return mapper.deleteProduct(product_id);
 	}
 	
-	public int updateProduct(ProductVO product) {
-		return mapper.updateProduct(product);
-	}
+//	public List<ProductVO> getProductList(Map<String, String> param) {
+//	return mapper.getProductList(param);
+//}
+//	public List<ProductVO> getProductList(Map<String, String> param) {
+//	return mapper.getProductList(param);
+//}
+//public ProductVO getProductList(Map<String, String> param) {
+//	return mapper.getProductList(param);
+//}
+//public ProductVO getProduct(String product_id) {
+//	return mapper.getProduct(product_id);
+//}
 	
 }

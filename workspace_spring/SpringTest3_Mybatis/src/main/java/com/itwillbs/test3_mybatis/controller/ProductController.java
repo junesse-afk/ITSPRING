@@ -1,12 +1,15 @@
 package com.itwillbs.test3_mybatis.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.test3_mybatis.service.ProductService;
 import com.itwillbs.test3_mybatis.vo.ProductVO;
@@ -34,17 +37,20 @@ public class ProductController {
 	}
 	
 	@GetMapping("productList")
-	public String productList(Model model) {
-		List<ProductVO> productList = service.getProductList();
+	public String productList(@RequestParam Map<String, String> param, Model model) {
+		System.out.println("!@#!@#");
+		System.out.println(param); // {}
+		
+		List<ProductVO> productList = service.getProductList(param);
 		model.addAttribute("productList", productList);
 		return "product/product_list";
 	}
 	
 	@GetMapping("productInfo")
-	public String productInfo(String product_id,Model model) {
+	public String productInfo(@RequestParam Map<String, String> param, Model model) {
 		
-		ProductVO product = service.getProductList(product_id);
-		model.addAttribute("product", product);
+		List<ProductVO> list = service.getProductList(param);
+		model.addAttribute("product", list.get(0));
 		
 		return "product/product_info";
 	}
@@ -56,9 +62,9 @@ public class ProductController {
 	}
 	
 	@GetMapping("productModify")
-	public String productModify(String product_id, Model model) {
-		ProductVO product = service.getProductList(product_id);
-		model.addAttribute("product", product);
+	public String productModify(@RequestParam Map<String, String> param, Model model) {
+		List<ProductVO> list = service.getProductList(param);
+		model.addAttribute("product", list.get(0));
 		return "product/product_modify_form";
 	}
 	

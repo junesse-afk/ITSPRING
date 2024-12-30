@@ -4,6 +4,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwillbs.test3_mybatis.mapper.ProductMapper">
 
+	<select id="getProductList" resultType="product" parameterType="map">
+		-- ProductMapper.xml getProductList
+		SELECT *
+		  FROM PRODUCT
+		 WHERE 1 = 1 
+		<if test="product_id != null and !product_id.equals('')">
+		   AND PRODUCT_ID = #{product_id} 
+		</if> 
+		<if test="product_name != null and !product_name.equals('')">
+<!-- 		WHERE PRODUCT_NAME LIKE '%${product_name}%' -->
+		   AND PRODUCT_NAME LIKE CONCAT('%', #{product_name}, '%')
+		</if>
+	</select>
+
 	<insert id="registProduct">
 		INSERT INTO PRODUCT
 		VALUES (#{product_id}
@@ -12,25 +26,6 @@
 		     ,  #{product_qty}
 		     ,  #{product_img})
 	</insert>
-
-	<select id="getProductList" resultType="product">
-		SELECT *
-		  FROM PRODUCT
-		<if test="product_id != null and !product_id.equals('')">
-		WHERE PRODUCT_ID = #{product_id} 
-		</if> 
-	</select>
-	
-<!-- 	<select id="getProduct" resultType="product"> -->
-<!-- 		SELECT * -->
-<!-- 		  FROM PRODUCT -->
-<!-- 		 WHERE PRODUCT_ID = #{product_id}  -->
-<!-- 	</select> -->
-	
-	<delete id="deleteProduct">
-		DELETE FROM PRODUCT
-		WHERE PRODUCT_ID = #{product_id} 
-	</delete>
 	
 	<update id="updateProduct">
 		UPDATE PRODUCT
@@ -41,5 +36,9 @@
 		 WHERE PRODUCT_ID = #{product_id} 	
 	</update>
 	
+	<delete id="deleteProduct">
+		DELETE FROM PRODUCT
+		WHERE PRODUCT_ID = #{product_id}
+	</delete>
 	
 </mapper> 
