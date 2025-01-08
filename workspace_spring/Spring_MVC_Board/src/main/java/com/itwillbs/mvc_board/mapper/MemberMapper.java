@@ -11,4 +11,6 @@ public interface MemberMapper {
 	
 	int registMember(MemberVO member);
 	int checkId(Map<String, String> param);
+	MemberVO getMember(MemberVO member);
+	MemberVO getMemberInfo(String id);
 }

@@ -22,4 +22,16 @@ public class MemberService {
 		return mapper.checkId(param);
 	}
 	
+	public MemberVO getMember(MemberVO member) {
+		return mapper.getMember(member);
+	}
+	
+	public MemberVO getMemberInfo(String id) {
+		return mapper.getMemberInfo(id);
+	}
+	
+	
+	
+	
+	
 }
