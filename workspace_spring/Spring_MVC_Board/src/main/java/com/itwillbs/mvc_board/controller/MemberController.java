@@ -101,6 +101,85 @@ public class MemberController {
 		return "member/member_modify_form";
 	}
 	
+	@PostMapping("MemberModify")
+//	public String memberModify(MemberVO member, String oldPasswd) {
+	public String memberModify(
+			@RequestParam Map<String, String> map, 
+			String hobby,
+			HttpSession session,
+			Model model) {
+		
+		System.out.println("!@#!@#");
+		map.put("hobby", hobby); // 기존 hobby 덮어씌우기
+		System.out.println(map);
+		
+		String id = (String)session.getAttribute("sId");
+		if (id == null) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			model.addAttribute("url", "MemberLogin");
+			return "result/fail";
+		}
+		
+		MemberVO dbMember = memberService.getMemberInfo(id);
+		// 화면에서 입력한 비밀번호(기존 비밀번호)와 DB비밀번호가 일치하면 수정!
+		if (!dbMember.getPasswd().equals(map.get("oldPasswd"))) {
+			model.addAttribute("msg", "수정 권한이 없습니다.");
+			return "result/fail";
+		}
+		// ------------------------------------------------------------
+		int updateCnt = memberService.modifyMember(map);
+		
+		if (updateCnt > 0) {
+			return "redirect:/MemberInfo";
+		} else {
+			model.addAttribute("msg", "회원정보 수정 실패!");
+			return "result/fail";
+		}
+	}
+	
+	@GetMapping("MemberWithdraw")
+	public String memberWithdraw(HttpSession session, Model model) {
+		String id = (String)session.getAttribute("sId");
+		if(id == null) {
+			model.addAttribute("msg", "로그인 필수!");
+			model.addAttribute("url", "MemberLogin");
+			return "result/fail";
+		}
+		return "member/member_withdraw_form";
+	}
+	
+	@PostMapping("MemberWithdraw")
+	public String memberWithdraw(
+			@RequestParam Map<String, String> map, 
+			HttpSession session, 
+			Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		MemberVO dbMember = memberService.getMemberInfo(id);
+		// 화면에서 입력한 비밀번호(기존 비밀번호)와 DB비밀번호가 일치하면 수정!
+		if (!dbMember.getPasswd().equals(map.get("passwd"))) {
+			model.addAttribute("msg", "비밀번호가 틀립니다.");
+			return "result/fail";
+		}
+		// 비밀번호 일치 시 map에 session에 id 추가
+		map.put("id", id);
+		
+		int updateCnt = memberService.updateStatus(map);
+		
+		if(updateCnt > 0) {
+			session.invalidate(); // session 초기화
+			model.addAttribute("msg", "탈퇴 성공");
+			model.addAttribute("url", "./"); // main 페이지로 이동
+		} else {
+			model.addAttribute("msg", "탈퇴 실패!");
+		}
+		return "result/fail";
+		
+		
+	}
+	
+	
 	@ResponseBody // 리턴되는 문자열이 데이터가 되도록 변경
 	@GetMapping("checkId")
 	public Map<String, String> checkId(@RequestParam Map<String, String> param) {

@@ -30,6 +30,13 @@ public class MemberService {
 		return mapper.getMemberInfo(id);
 	}
 	
+	public int modifyMember(Map<String, String> map) {
+		return mapper.modifyMember(map);
+	}
+	
+	public int updateStatus(Map<String, String> map) {
+		return mapper.updateStatus(map);
+	}
 	
 	
 	
