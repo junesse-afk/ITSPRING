@@ -22,7 +22,6 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	
 	@GetMapping("BoardWrite")
 	public String boardWrite(HttpSession session, Model model) {
 		
@@ -131,7 +130,7 @@ public class BoardController {
 	@GetMapping("BoardDetail")
 	public String boardDetail(int board_num, Model model) {
 		
-		BoardVO board = boardService.getBoard(board_num);
+		BoardVO board = boardService.getBoard(board_num, true);
 		
 		if (board == null) {
 			model.addAttribute("msg", "존재하지 않는 게시물입니다");
@@ -143,7 +142,43 @@ public class BoardController {
 		return "board/board_detail";
 	}
 	
-	
+	@GetMapping("BoardDelete")
+	public String boardDelete(BoardVO board,
+			HttpSession session,
+			Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		if(id == null) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			model.addAttribute("url", "MemberLogin");
+			return "result/fail";
+		}
+		
+		// -----------------------------------------------
+		BoardVO dbBoard = boardService.getBoard(board.getBoard_num(), false);
+		
+		// 조회 결과가 없거나, 관리자가 아니고 세션 아이디와 작성자가 일치하지 않을 경우
+		// "잘못된 접근입니다!" 메세지로 fail.jsp 페이지 포워딩 처리
+		if (dbBoard == null || 
+			(!id.equals("admin") && !id.equals(dbBoard.getBoard_name()))) {
+			
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "result/fail";
+		}
+		
+		// ---------------------------------------------
+		// BoardService - removeBoard() 메서드 호출하여 글 삭제 요청
+		// => 파라미터: BoardVO 객체, 리턴타입: int(deleteCnt)
+		int deleteCnt = boardService.removeBoard(board);
+		
+		if (deleteCnt > 0) {
+			return "redirect:/BoardList";
+		} else {
+			return "result/fail";
+		}
+		
+		 
+	}
 	
 	
 	

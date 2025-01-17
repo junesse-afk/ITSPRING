@@ -102,6 +102,20 @@
 			${board.board_content }
 		</section>
 		<section id="commandCell">
+		
+			<%-- 답글, 수정, 삭제 버튼 모두 로그인 한 사용자에게만 표시 --%>
+			<c:if test="${not empty sessionScope.sId}">
+				<input type="button" value="답글" onclick="location.href=''">
+				<%-- 수정, 삭제 버튼은 작성자가 세션아이디와 동일할 경우에만 표시 --%>
+				<c:if test="${sessionScope.sId eq board.board_name or sessionScope.sId eq 'admin'}">
+					<input type="button" value="수정" onclick="">
+					<input type="button" value="삭제" onclick="confirmDelete()">
+				</c:if>
+			</c:if>
+		
+			
+		
+		
 			<%-- 목록 버튼 항상 표시 --%>
 			<input type="button" value="목록" onclick="location.href='BoardList?pageNum=${param.pageNum}'">
 		</section>
@@ -110,6 +124,23 @@
 		<!-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 -->
 		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>
 	</footer>
+	
+	<script type="text/javascript">
+		function confirmDelete(){
+			if(confirm("삭제하시겠습니까?")){
+				location.href = "BoardDelete?board_num=${board.board_num}";
+			}
+		}
+	
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
 

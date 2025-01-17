@@ -54,9 +54,15 @@
 	 WHERE BOARD_NUM = #{board_num} 
 	</select>
 	
+	<delete id="removeBoard" parameterType="board">
+	DELETE FROM BOARD
+	 WHERE BOARD_NUM = #{board_num}
+	</delete>
 	
-	
-	
-	
+	<update id="updateReadCount">
+		UPDATE BOARD
+		   SET board_readcount = board_readcount + 1
+		 WHERE board_num = #{board_num} 	
+	</update>
 
 </mapper> 
