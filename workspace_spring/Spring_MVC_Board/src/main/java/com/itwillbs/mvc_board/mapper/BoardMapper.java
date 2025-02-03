@@ -29,4 +29,5 @@ public interface BoardMapper {
 	
 	public void updateReadCount(@Param("board_num") int board_num);
 	
+	public int modifyBoard(BoardVO board);
 }

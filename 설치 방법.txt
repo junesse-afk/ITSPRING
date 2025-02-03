@@ -1,0 +1,13 @@
+0. 실행중인 이클립스 종료
+1. cmd 실행
+2. java -jar 롬복파일명.jar
+   ex) java -jar d:\lombok.jar
+3. 창 열린 후 현재 컴퓨터의 이클립스들이 표시됨
+
+ => STS 안보일 경우
+   Specify location... 클릭
+   STS 설치 경로에 ini 파일 선택
+
+4. Install/Update 클릭하여 설치
+5. 설치 완료 후 Quit Installer 버튼 클릭하여 종료
+6. 이클립스 실행

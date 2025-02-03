@@ -37,4 +37,13 @@ public class BoardService {
 		return mapper.removeBoard(board);
 	}
 	
+	public int modifyBoard(BoardVO board) {
+		return mapper.modifyBoard(board);
+	}
+	
+	
+	
+	
+	
+	
 }
