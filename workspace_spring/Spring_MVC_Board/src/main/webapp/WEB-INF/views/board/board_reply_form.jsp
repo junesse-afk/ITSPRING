@@ -44,32 +44,22 @@
 	</header>
 	<!-- 게시판 등록 -->
 	<article id="writeForm">
-		<h1>게시판 글 등록</h1>
-<!-- 		<form action="BoardWrite" name="writeForm" method="post"> -->
-
-		<%--
-		파일 업로드 기능을 포함시키려면 enctype 속성값을 "multipart/form-data" 로 설정 필수!
-		=> 모든 폼 파라미터 데이터를 인코딩 된 단순 문자열이 아닌 "multipart" 라는 형식(=파일)로 관리하므로
-		  서버측으로 업로드 파일이 실제 파일 형태로 정상적으로 전송되며 다른 파라미터도 함께 전송됨
-		=> 만약, 서버측 컨트롤러에서 파라미터 매핑 시 VO 클래스 등에 MultipartFile 타입 지정 시
-		   enctype="multipart/form-data" 미 설정 시 파일 전송 불가능하며
-		   또한 응답코드 400번과 함께 서버측에서 예외 발생함
-		 --%>	
-		<form action="BoardWrite" name="writeForm" method="post" enctype="multipart/form-data">
+		<h1>게시판 답글 작성</h1>
+		<form action="BoardReply" name="writeForm" method="post" enctype="multipart/form-data">
+		
+			<%-- 답글 작성에 필요한 원본 글에 대한 추가 정보(참조글번호, 들여쓰기레벨, 순서번호)도 전달 --%>
+			<input type="hidden" name="board_re_ref" value="${board.board_re_ref }">
+			<input type="hidden" name="board_re_lev" value="${board.board_re_lev }">
+			<input type="hidden" name="board_re_seq" value="${board.board_re_seq }">
+		
 			<table>
 				<tr>
 					<td class="write_td_left"><label for="board_name">글쓴이</label></td>
 					<td class="write_td_right"><input type="text" name="board_name" value="${sessionScope.sId }" required="required" /></td>
 				</tr>
-<!-- 				<tr> -->
-<!-- 					<td class="write_td_left"><label for="board_pass">비밀번호</label></td> -->
-<!-- 					<td class="write_td_right"> -->
-<!-- 						<input type="password" name="board_pass" required="required" /> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
 				<tr>
 					<td class="write_td_left"><label for="board_subject">제목</label></td>
-					<td class="write_td_right"><input type="text" id="board_subject" name="board_subject" required="required" /></td>
+					<td class="write_td_right"><input type="text" id="board_subject" name="board_subject" value="Re:${board.board_subject }" required="required" /></td>
 				</tr>
 				<tr>
 					<td class="write_td_left"><label for="board_content">내용</label></td>

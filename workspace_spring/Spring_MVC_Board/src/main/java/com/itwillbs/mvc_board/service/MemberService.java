@@ -72,9 +72,9 @@ public class MemberService {
 				mapper.updateMailAuthStatus(mailAuthInfo);
 				
 				// rollback 처리 확인
-				if (true) {
-					throw new RuntimeException();
-				}
+//				if (true) {
+//					throw new RuntimeException();
+//				}
 				
 				// 2. MAIL_AUTH_INFO 테이블에 인증이 완료된 Row 삭제
 				mapper.deleteMailAuthInfo(mailAuthInfo);
